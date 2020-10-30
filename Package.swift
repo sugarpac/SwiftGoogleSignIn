@@ -15,10 +15,10 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "GoogleSignIn",
-            targets: ["GoogleSignInTarget"]),
+            targets: ["SwiftGoogleSignIn"]),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
+         // Dependencies declare other packages that this package depends on.
         .package(
             name: "GTMSessionFetcher",
             url: "https://github.com/google/gtm-session-fetcher.git",
@@ -36,24 +36,29 @@ let package = Package(
         )
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
+//         Targets are the basic building blocks of a package. A target can define a module or a test suite.
+//         Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "GoogleSignInTarget",
+            name: "SwiftGoogleSignIn",
+            dependencies: [
+                .target(name: "GoogleSignInWrapper", condition: .when(platforms: .some([.iOS]))),
+            ],
+            resources: [
+                .process("Sources/GoogleSignInWrapper")
+            ]),
+        .target(
+            name: "GoogleSignInWrapper",
             dependencies: [
                 .product(name: "GTMSessionFetcherCore", package: "GTMSessionFetcher"),
                 .product(name: "AppAuthCore", package: "AppAuth"),
                 .product(name: "GTMAppAuth", package: "GTMAppAuth"),
-                .target(name: "GoogleSignIn", condition: .when(platforms: .some([.iOS])))
-            ],
-            resources: [
-                .process("Sources")
+                .target(name: "GoogleSignInBinary", condition: .when(platforms: .some([.iOS])))
             ]),
         .testTarget(
             name: "GoogleSignInTests",
-            dependencies: ["GoogleSignInTarget"]),
+            dependencies: ["SwiftGoogleSignIn"]),
         .binaryTarget(
-            name: "GoogleSignIn",
+            name: "GoogleSignInBinary",
             path: "artifacts/GoogleSignIn.xcframework"
         )
     ]
