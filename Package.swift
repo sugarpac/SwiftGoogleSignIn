@@ -15,7 +15,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "GoogleSignIn",
-            targets: ["GoogleSignIn"]),
+            targets: ["GoogleSignInTarget"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -26,8 +26,8 @@ let package = Package(
         ),
         .package(
             name: "GTMAppAuth",
-            url: "https://github.com/google/GTMAppAuth.git",
-            "1.0.0" ..< "2.0.0"
+            url: "git@github.com:sugarpac/GTMAppAuth.git",
+            .branch("master")
         ),
         .package(
             name: "AppAuth",
@@ -39,19 +39,21 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "GoogleSignIn",
+            name: "GoogleSignInTarget",
             dependencies: [
                 .product(name: "GTMSessionFetcherCore", package: "GTMSessionFetcher"),
                 .product(name: "AppAuthCore", package: "AppAuth"),
-                .target(name: "GoogleSignInBinary", condition: .when(platforms: .some([.iOS])))],
+                .product(name: "GTMAppAuth", package: "GTMAppAuth"),
+                .target(name: "GoogleSignIn", condition: .when(platforms: .some([.iOS])))
+            ],
             resources: [
-                .process("Resources")
+                .process("Sources")
             ]),
         .testTarget(
             name: "GoogleSignInTests",
-            dependencies: ["GoogleSignIn"]),
+            dependencies: ["GoogleSignInTarget"]),
         .binaryTarget(
-            name: "GoogleSignInBinary",
+            name: "GoogleSignIn",
             path: "artifacts/GoogleSignIn.xcframework"
         )
     ]

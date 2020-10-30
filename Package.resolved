@@ -21,11 +21,11 @@
       },
       {
         "package": "GTMAppAuth",
-        "repositoryURL": "https://github.com/google/GTMAppAuth.git",
+        "repositoryURL": "git@github.com:sugarpac/GTMAppAuth.git",
         "state": {
-          "branch": null,
-          "revision": "319b2371c69138665d8cbd7c6700ceccbb49e04f",
-          "version": "1.1.0"
+          "branch": "master",
+          "revision": "1d0e33c01582d4df72f7c6ffd1e9e6a21698844c",
+          "version": null
         }
       }
     ]
