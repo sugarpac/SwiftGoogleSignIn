@@ -43,7 +43,9 @@ let package = Package(
             dependencies: [
                 .product(name: "GTMSessionFetcherCore", package: "GTMSessionFetcher"),
                 .product(name: "AppAuthCore", package: "AppAuth"),
-                .target(name: "GoogleSignInBinary", condition: .when(platforms: .some([.iOS]))),
+                .target(name: "GoogleSignInBinary", condition: .when(platforms: .some([.iOS])))],
+            resources: [
+                .process("Resources")
             ]),
         .testTarget(
             name: "GoogleSignInTests",
