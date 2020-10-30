@@ -42,9 +42,6 @@ let package = Package(
             name: "SwiftGoogleSignIn",
             dependencies: [
                 .target(name: "GoogleSignInWrapper", condition: .when(platforms: .some([.iOS]))),
-            ],
-            resources: [
-                .process("Sources/GoogleSignInWrapper")
             ]),
         .target(
             name: "GoogleSignInWrapper",
@@ -53,6 +50,9 @@ let package = Package(
                 .product(name: "AppAuthCore", package: "AppAuth"),
                 .product(name: "GTMAppAuth", package: "GTMAppAuth"),
                 .target(name: "GoogleSignInBinary", condition: .when(platforms: .some([.iOS])))
+            ],
+            resources: [
+                .process("Sources/GoogleSignInWrapper")
             ]),
         .testTarget(
             name: "GoogleSignInTests",
