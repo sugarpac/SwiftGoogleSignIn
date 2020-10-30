@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftGoogleSignIn",
+    defaultLocalization: "en",
     platforms: [
         .macOS(.v10_11),
         .iOS(.v9),
@@ -52,7 +53,8 @@ let package = Package(
                 .target(name: "GoogleSignInBinary", condition: .when(platforms: .some([.iOS])))
             ],
             resources: [
-                .process("Sources/GoogleSignInWrapper")
+                .process("Images"),
+                .process("Fonts")
             ]),
         .testTarget(
             name: "GoogleSignInTests",
