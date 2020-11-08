@@ -5,7 +5,7 @@
 	<key>CFBundleExecutable</key>
 	<string>GoogleSignIn</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.qrint.GoogleSignIn</string>
+	<string>GoogleSignIn</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
