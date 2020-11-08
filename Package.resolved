@@ -21,7 +21,7 @@
       },
       {
         "package": "GTMAppAuth",
-        "repositoryURL": "git@github.com:sugarpac/GTMAppAuth.git",
+        "repositoryURL": "https://github.com/sugarpac/GTMAppAuth.git",
         "state": {
           "branch": "master",
           "revision": "765a8ed6226c96689cef4fa9418ce8aed86d4342",

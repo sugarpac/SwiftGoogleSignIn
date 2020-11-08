@@ -27,7 +27,7 @@ let package = Package(
         ),
         .package(
             name: "GTMAppAuth",
-            url: "git@github.com:sugarpac/GTMAppAuth.git",
+            url: "https://github.com/sugarpac/GTMAppAuth.git",
             .branch("master")
         ),
         .package(
@@ -54,7 +54,8 @@ let package = Package(
             ],
             resources: [
                 .process("Images"),
-                .process("Fonts")
+                .process("Fonts"),
+                .process("Resources"),
             ]),
         .testTarget(
             name: "GoogleSignInTests",
